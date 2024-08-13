@@ -1,0 +1,59 @@
+<section>
+<div class="container mt-3">
+        <form action="" id="checkform" method="post">
+            <div class="col-md-6">
+            <h4 class="text-center">Enter delivery address</h4>
+            
+            <div>
+                <label>Name</label>
+
+                <input type="text" class="form-control" name="Name" placeholder="Enter Name">
+                <label>Mobile</label>
+                <input type="number" class="form-control" name="Mobile" placeholder="Enter email">
+               <label>Address</label>
+                <input class="form-control" placeholder="Address" type="text" name="Address" id="">
+                   <input type="text" name="userId" id="" value="{{user._id}}" hidden>
+            </div>
+    </div>
+    
+
+
+    <div class="col-md-4 ">
+        <div class="container mt-5 mr-3 checkout">
+            <h5>Total Amount : {{total}}</h5>
+            <hr>
+            <div class="payment">
+                <p>Payment methos</p>
+                <label for="" class="radio-inline">
+                    <input type="radio" name="payment-method" value="COD" checked>COD
+                </label><br>
+                <label for="" class="radio-inline">
+                    <input type="radio" name="payment-method" value="ONLINE" Online>Online payment
+                </label><br>
+                <button class="btn btn-primary" type="submit">Check out</button>
+            </div>
+        </div>
+    </div>
+
+
+    </form>
+</div>
+
+</section>
+
+<script>
+    $("#checkform").submit((e)=>{
+        e.preventDefault()
+        $.ajax({
+            url:'/place-order',
+            method:'post',
+            data:$('#checkform').serialize(), 
+            success:(response)=>{
+                alert("Ordered successfully")
+                if(response.status){
+                    location.href="/order-success"
+                }
+            }
+        })
+    })
+</script>

@@ -1,0 +1,35 @@
+<section>
+    <div class="container">
+          
+        <h4>Ordered Items </h4>
+          <div class="container">
+        <table class="table mt-5">
+            <thead>
+               
+                <tr>
+                    <th>Item</th>
+                    <th>title</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each products}}
+                {{log this}}
+                <tr>
+
+                    <td> <img src="/product-images/{{this.product._id}}.jpg" style="width: 50px;height: 40px;"> </td>
+                    <td>{{this.product.Name}}</td>
+                    <td>{{this.product.Price}}</td>
+
+                   
+                    
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+      
+        
+    </div>
+    </div>
+</section>
