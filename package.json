@@ -16,7 +16,6 @@
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
     "mongodb": "^6.8.0",
-    "morgan": "~1.9.1",
-    "connect-mongo": "^4.6.0"
+    "morgan": "~1.9.1"
   }
 }
