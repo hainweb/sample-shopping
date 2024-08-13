@@ -23,19 +23,23 @@ router.get('/add-product', function (req, res) {
 })
 router.post('/add-product', (req, res) => {
   console.log(req.body);
-  console.log(req.files.Image);
+  if (req.files && req.files.Image) {
+    productHelpers.addProduct(req.body, (id) => {
+      let image = req.files.Image;
+      image.mv('./public/product-images/' + id + '.jpg', (err) => {
+        if (!err) {
+          res.render("admin/add-product");
+        } else {
+          console.error('Error moving the file:', err);
+          res.status(500).send("Error saving the image");
+        }
+      });
+    });
+  } else {
+    res.status(400).send("No image uploaded");
+  }
+});
 
-  productHelpers.addProduct(req.body, (id) => {
-    let image = req.files.Image
-    console.log(id);
-    image.mv('./public/product-images/' + id + '.jpg', (err, done) => {
-      if (!err) {
-        res.render("admin/add-product")
-      }
-    })
-
-  })
-})
 router.get('/delete-product/:id', (req, res) => {
   let proId = req.params.id
   console.log(proId);
