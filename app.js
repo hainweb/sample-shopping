@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-//const MongoStore = require('connect-mongo');
+const MongoStore = require('connect-mongo');
 
 var userRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
@@ -31,15 +31,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload())
-app.use(session({secret:"key",cookie:{maxAge:6000000}}))
+//app.use(session({secret:"key",cookie:{maxAge:6000000}}))
 
-/*app.use(session({
+app.use(session({
   secret: 'ajinajinshoppingsecretisajin',
   resave: false,
   saveUninitialized: true,
-  store: MongoStore.create({ mongoUrl: 'mongodb+srv://hainofficialweb:<password>@samle-shopping.f5two.mongodb.net/?retryWrites=true&w=majority&appName=samle-shopping' }),
+  store: MongoStore.create({ mongoUrl: 'mongodb+srv://hainofficialweb:0wCqDqaj0vQO28oD@samle-shopping.f5two.mongodb.net/?retryWrites=true&w=majority&appName=samle-shopping' }),
   cookie:{maxAge:6000000}
-})); */
+})); 
 
 db.connect((err)=>{
   if (err)
