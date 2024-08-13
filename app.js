@@ -29,7 +29,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload())
-app.use(session({secret:"key",cookie:{maxAge:600000}}))
+// app.use(session({secret:"key",cookie:{maxAge:600000}}))
+
+app.use(session({
+  secret: 'ajinajinshoppingsecretisajin',
+  resave: false,
+  saveUninitialized: true,
+  store: MongoStore.create({ mongoUrl: 'your-mongo-connection-string' }),
+  cookie:{maxAge:6000000}
+}));
 
 db.connect((err)=>{
   if (err)
