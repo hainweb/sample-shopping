@@ -23,25 +23,29 @@ router.get('/add-product', function (req, res) {
 })
 router.post('/add-product', (req, res) => {
   console.log(req.body);
-  console.log(req.files); // Log all files
+  console.log(req.files.Image);
 
-  let image = req.files.Image;
-  
-  if (!image) {
-    return res.status(400).send("No image file uploaded.");
-  }
+  productHelpers.addProduct(req.body, (id) => {
+    let image = req.files.Image;
 
-  console.log("Image file details:", image); // Log image details
-
-  const imagePath = './public/product-images/' + id + '.jpg';
-
-  image.mv(imagePath, (err) => {
-    if (err) {
-      console.error("Error saving image:", err);
-      return res.status(500).send("Error saving image");
+    // Check if image is provided
+    if (!image) {
+      return res.status(400).send("No image file uploaded.");
     }
-    
-    res.render("admin/add-product");
+
+    // Define the path where the image will be saved
+    const imagePath = './public/product-images/' + id + '.jpg';
+
+    // Move the image to the specified path
+    image.mv(imagePath, (err) => {
+      if (err) {
+        console.error("Error saving image:", err);
+        return res.status(500).send("Error saving image");
+      }
+      
+      // Render the response if the image is saved successfully
+      res.render("admin/add-product");
+    });
   });
 });
 
