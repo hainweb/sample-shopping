@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const MongoStore = require('connect-mongo');
 
 var userRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
@@ -12,6 +13,7 @@ var app = express();
 var fileUpload=require('express-fileupload')
 var db=require('./config/connection')
 var session=require('express-session')
+
 
 
 // view engine setup
