@@ -35,7 +35,7 @@ app.use(session({
   secret: 'ajinajinshoppingsecretisajin',
   resave: false,
   saveUninitialized: true,
-  store: MongoStore.create({ mongoUrl: 'your-mongo-connection-string' }),
+  store: MongoStore.create({ mongoUrl: 'mongodb+srv://hainofficialweb:<password>@samle-shopping.f5two.mongodb.net/?retryWrites=true&w=majority&appName=samle-shopping' }),
   cookie:{maxAge:6000000}
 }));
 
