@@ -19,7 +19,7 @@ router.get('/', async function (req, res, next) {
 
 
 router.get('/add-product', function (req, res) {
-  res.render('admin/add-product')
+  res.render('admin/add-product',{admin:true})
 })
 router.post('/add-product', (req, res) => {
   console.log(req.body);
