@@ -33,13 +33,24 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload())
 //app.use(session({secret:"key",cookie:{maxAge:6000000}}))
 
-app.use(session({
+/*app.use(session({
   secret: 'ajinajinshoppingsecretisajin',
   resave: false,
   saveUninitialized: true,
   store: MongoStore.create({ mongoUrl: 'mongodb+srv://hainofficialweb:0wCqDqaj0vQO28oD@samle-shopping.f5two.mongodb.net/?retryWrites=true&w=majority&appName=samle-shopping' }),
   cookie:{maxAge:6000000}
-})); 
+}));  */
+
+app.use(session({
+  secret: 'ajinajinshoppingsecretisajin',
+  resave: false,
+  saveUninitialized: false,
+  store: MongoStore.create({
+      mongoUrl: 'mongodb+srv://hainofficialweb:0wCqDqaj0vQO28oD@samle-shopping.f5two.mongodb.net/?retryWrites=true&w=majority&appName=samle-shopping',
+      collectionName: 'sessions'
+  }),
+  cookie: { secure: false }
+}));
 
 db.connect((err)=>{
   if (err)
